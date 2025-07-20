@@ -1,0 +1,10 @@
+import "doc/service.api"
+
+info (
+	title:   "Trading Service"
+	desc:    "Trading Service"
+	author:  "wws"
+	email:   "wws741@qq.com"
+	version: "1.0"
+)
+

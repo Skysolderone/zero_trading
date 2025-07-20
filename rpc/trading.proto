@@ -1,0 +1,24 @@
+syntax = "proto3";
+package trading;
+option go_package = "./trading";
+
+message SetTradingSignalRequest {
+    string signal = 1;
+}
+
+message SetTradingSignalResponse {
+    int32 code = 1;
+    string message = 2;
+}
+message GetTradingRequest {
+    int32 id = 1;
+}
+
+message GetTradingResponse {
+    int32 code = 1;
+    string message = 2;
+}
+service TradingService {
+    rpc SetTradingSignal(SetTradingSignalRequest) returns (SetTradingSignalResponse);
+    rpc GetTrading(GetTradingRequest) returns (GetTradingResponse);
+}

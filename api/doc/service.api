@@ -1,0 +1,26 @@
+syntax = "v1"
+
+import "common.api"
+
+
+
+@server (
+	handler: TradingService
+	timeout: 10s
+	prefix:  /trading
+)
+service TradingService {
+	@handler GetTrading
+	get /trading/:id (GetTradingRequest) returns (BaseResponse)
+
+	@handler SetTradingSignal
+	post /trading/signal (SetTradingSignalRequest) returns (Base)
+}
+
+type GetTradingRequest {
+	Id int `json:"id"`
+}
+
+type SetTradingSignalRequest {
+	Signal string `json:"signal"`
+}

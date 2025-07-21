@@ -24,7 +24,7 @@ var (
 
 func main() {
 	flag.Parse()
-
+	fmt.Println("trading start", *configFile)
 	var c config.Config
 	if *nacosFlag {
 		conf.MustLoad(*configFile, &c)
@@ -36,7 +36,8 @@ func main() {
 	} else {
 		conf.MustLoad(*configFile, &c)
 	}
-
+	// fmt.Println("trading config", conf.LoadConfig())
+	fmt.Println("trading config", c.Etcd)
 	ctx := svc.NewServiceContext(c)
 	s := zrpc.MustNewServer(c.RpcServerConf, func(grpcServer *grpc.Server) {
 		trading.RegisterTradingServiceServer(grpcServer, server.NewTradingServiceServer(ctx))

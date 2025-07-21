@@ -26,7 +26,7 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 				Handler: SetTradingSignalHandler(serverCtx),
 			},
 		},
-		rest.WithPrefix("/trading"),
+		// rest.WithPrefix("/trading"),··
 		rest.WithTimeout(10000*time.Millisecond),
 	)
 }

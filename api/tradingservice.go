@@ -21,7 +21,7 @@ var (
 
 func main() {
 	flag.Parse()
-
+	fmt.Println("tradingservice start", *configFile)
 	var c config.Config
 	// 异常捕获
 	defer threading.GoSafe(func() {})
@@ -35,7 +35,7 @@ func main() {
 	} else {
 		conf.MustLoad(*configFile, &c)
 	}
-
+	fmt.Println("tradingservice config", c.TradingService)
 	server := rest.MustNewServer(c.RestConf)
 	defer server.Stop()
 

@@ -24,7 +24,9 @@ func NewSetTradingSignalLogic(ctx context.Context, svcCtx *svc.ServiceContext) *
 }
 
 func (l *SetTradingSignalLogic) SetTradingSignal(in *trading.SetTradingSignalRequest) (*trading.SetTradingSignalResponse, error) {
-	// todo: add your logic here and delete this line
-
-	return &trading.SetTradingSignalResponse{}, nil
+	l.Logger.Infof("rpc logic SetTradingSignalLogic %v", in)
+	result := new(trading.SetTradingSignalResponse)
+	result.Code = 0
+	result.Message = "success"
+	return result, nil
 }

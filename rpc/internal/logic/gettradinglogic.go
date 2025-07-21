@@ -24,7 +24,8 @@ func NewGetTradingLogic(ctx context.Context, svcCtx *svc.ServiceContext) *GetTra
 }
 
 func (l *GetTradingLogic) GetTrading(in *trading.GetTradingRequest) (*trading.GetTradingResponse, error) {
-	// todo: add your logic here and delete this line
-
-	return &trading.GetTradingResponse{}, nil
+	result := new(trading.GetTradingResponse)
+	result.Code = 0
+	result.Message = "success"
+	return result, nil
 }

@@ -5,6 +5,7 @@ import (
 
 	"ws_trading/api/internal/svc"
 	"ws_trading/api/internal/types"
+	"ws_trading/rpc/trading"
 
 	"github.com/zeromicro/go-zero/core/logx"
 )
@@ -24,17 +25,19 @@ func NewSetTradingSignalLogic(ctx context.Context, svcCtx *svc.ServiceContext) *
 }
 
 func (l *SetTradingSignalLogic) SetTradingSignal(req *types.SetTradingSignalRequest) (resp *types.Base, err error) {
+	l.Logger.Infof("SetTradingSignalLogic %v", req)
 	resp = new(types.Base)
-	//编写rpc服务后调用
-	// res, err := l.svcCtx.TradingService.SetTradingSignal(l.ctx, &trading.SetTradingSignalRequest{
-	// 	Signal: req.Signal,
-	// })
-	// if err != nil {
-	// 	resp.Code = 1
-	// 	resp.Message = err.Error()
-	// }
-	resp.Code = 0
-	resp.Message = "success"
+
+	res, err := l.svcCtx.TradingService.SetTradingSignal(l.ctx, &trading.SetTradingSignalRequest{
+		Signal: req.Signal,
+	})
+	if err != nil {
+		l.Logger.Errorf("SetTradingSignalLogic Error %v", err)
+		resp.Code = 1
+		resp.Message = err.Error()
+	}
+	resp.Code = int(res.Code)
+	resp.Message = res.Message
 
 	return
 }

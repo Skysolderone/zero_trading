@@ -2,12 +2,10 @@ syntax = "v1"
 
 import "common.api"
 
-
-
 @server (
 	handler: TradingService
 	timeout: 10s
-	prefix:  /trading
+	// prefix:  /trading
 )
 service TradingService {
 	@handler GetTrading
